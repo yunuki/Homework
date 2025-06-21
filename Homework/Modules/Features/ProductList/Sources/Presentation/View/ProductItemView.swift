@@ -14,15 +14,16 @@ import Utils
 
 struct ProductItemView: View {
     let product: Product
+    @Environment(\.showSkeleton) var showSkeleton
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            thumbnail
-            title
-            price
+            thumbnail.skeletonable(showSkeleton, cornerRadius: 8)
+            title.skeletonable(showSkeleton)
+            price.skeletonable(showSkeleton)
             tags
             benefits
-            rating
+            rating.skeletonable(showSkeleton)
             Spacer()
         }
     }
@@ -71,10 +72,16 @@ struct ProductItemView: View {
         }
     }
     
+    @ViewBuilder
     private var tags: some View {
-        FlowLayout(items: product.tags.flatMap { [$0, "・"] }.dropLast(), spacing: 2) { index, tag in
-            Text(tag)
-                .typography(.caption1)
+        if product.tags.isEmpty {
+            EmptyView()
+        } else {
+            FlowLayout(items: product.tags.flatMap { [$0, "・"] }.dropLast(), spacing: 2) { index, tag in
+                Text(tag)
+                    .typography(.caption1)
+                    .skeletonable(showSkeleton)
+            }
         }
     }
     
@@ -85,6 +92,7 @@ struct ProductItemView: View {
         } else {
             FlowLayout(items: product.benefits, spacing: 4) { index, benefit in
                 BenefitTagView(benefit: benefit)
+                    .skeletonable(showSkeleton)
             }
         }
     }

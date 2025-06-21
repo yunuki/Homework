@@ -19,7 +19,7 @@ final class ProductListViewModel: ObservableObject {
     
     struct State {
         var initialized: Bool = false
-        var products: [Product] = []
+        var products: [Product] = Product.dummy(count: 6)
         var error: Error?
     }
     
@@ -58,5 +58,26 @@ final class ProductListViewModel: ObservableObject {
             newState.error = error
         }
         self.state = newState
+    }
+}
+
+private extension Product {
+    static func dummy(count: Int) -> [Self] {
+        return (0..<count).map { index in
+            let base = BaseProduct(id: "\(index)",
+                                   name: String(repeating: "name", count: 5),
+                                   brand: "brand",
+                                   price: 10000,
+                                   discountPrice: 10000,
+                                   discountRate: 0,
+                                   imageURL: URL(string: "https://example.com/image\(index).jpg")!,
+                                   linkURL: URL(string: "https://example.com/product\(index)")!)
+            
+            return Product(base: base,
+                           tags: [],
+                           benefits: ["benefit1", "benefit2"],
+                           rating: 4.5,
+                           reviewCount: 0)
+        }
     }
 }

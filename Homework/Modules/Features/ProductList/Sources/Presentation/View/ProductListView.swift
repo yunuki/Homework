@@ -28,5 +28,6 @@ struct ProductListView: View {
         .onAppear {
             viewModel.sendAction(.onAppear)
         }
+        .environment(\.showSkeleton, !viewModel.state.initialized)
     }
 }
