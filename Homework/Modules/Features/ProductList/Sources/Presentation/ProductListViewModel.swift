@@ -15,6 +15,7 @@ final class ProductListViewModel: ObservableObject {
     enum Action {
         case onAppear
         case onCompletedTask(products: [Product], error: Error?)
+        case onTapItem(product: Product)
     }
     
     struct State {
@@ -56,6 +57,9 @@ final class ProductListViewModel: ObservableObject {
             newState.initialized = true
             newState.products = products
             newState.error = error
+            
+        case .onTapItem(let product):
+            coordinator.showProductDetail(linkURL: product.base.linkURL)
         }
         self.state = newState
     }

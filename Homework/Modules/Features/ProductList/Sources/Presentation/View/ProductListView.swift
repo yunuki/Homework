@@ -21,6 +21,10 @@ struct ProductListView: View {
             LazyVGrid(columns: columns, spacing: 16) {
                 ForEach(viewModel.state.products) { product in
                     ProductItemView(product: product)
+                        .onTapGesture {
+                            viewModel.sendAction(.onTapItem(product: product))
+                        }
+                        .disabled(viewModel.state.initialized)
                 }
             }
             .padding(.horizontal, 16)

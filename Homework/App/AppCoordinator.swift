@@ -29,7 +29,7 @@ final class AppCoordinator: ProductListCoordinating  {
         window.makeKeyAndVisible()
     }
     
-    func showProductDetail(id: String) {
+    func showProductDetail(linkURL: URL) {
         
     }
 }
