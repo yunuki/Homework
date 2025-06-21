@@ -34,14 +34,15 @@ final class ProductListViewModel: ObservableObject {
     }
     
     func sendAction(_ action: Action) {
-        Task { await reduce(action) }
+        Task { await reduce(action, state: state) }
     }
     
     @MainActor
-    private func reduce(_ action: Action) {
+    private func reduce(_ action: Action, state: State) {
         var newState = state
         switch action {
         case .onAppear:
+            guard !state.initialized else { return }
             Task {
                 do {
                     let products = try await getProductListUseCase.execute()
@@ -52,6 +53,7 @@ final class ProductListViewModel: ObservableObject {
             }
             
         case .onCompletedTask(let products, let error):
+            newState.initialized = true
             newState.products = products
             newState.error = error
         }

@@ -5,9 +5,13 @@
 //  Created by 윤재욱 on 6/21/25.
 //
 
+import Foundation
+
 import Entity
 
-public struct Product {
+public struct Product: Identifiable {
+    public var id: UUID { uuid }
+    public let uuid = UUID()
     public let base: BaseProduct
     public let tags: [String]
     public let benefits: [String]

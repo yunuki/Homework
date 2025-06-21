@@ -10,14 +10,23 @@ import SwiftUI
 struct ProductListView: View {
     
     @StateObject var viewModel: ProductListViewModel
+    private let columns = (0..<2).map { _ in GridItem(.flexible(minimum: 0), spacing: 16) }
     
     init(viewModel: ProductListViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
     }
     
     var body: some View {
-        LazyVGrid(columns: []) {
-            
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: 16) {
+                ForEach(viewModel.state.products) { product in
+                    ProductItemView(product: product)
+                }
+            }
+            .padding(.horizontal, 16)
+        }
+        .onAppear {
+            viewModel.sendAction(.onAppear)
         }
     }
 }

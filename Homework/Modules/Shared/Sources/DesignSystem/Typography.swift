@@ -10,7 +10,8 @@ import SwiftUI
 public enum Typography: String, CaseIterable {
     case title
     case body
-    case caption
+    case caption1
+    case caption2
     
     public var fontSize: CGFloat {
         switch self {
@@ -18,8 +19,10 @@ public enum Typography: String, CaseIterable {
             return 18
         case .body:
             return 14
-        case .caption:
+        case .caption1:
             return 10
+        case .caption2:
+            return 8
         }
     }
     
@@ -29,7 +32,7 @@ public enum Typography: String, CaseIterable {
     
     public var lineHeight: CGFloat {
         switch self {
-        case .title, .body, .caption:
+        case .title, .body, .caption1, .caption2:
             return fontSize * 1.5
         }
     }
