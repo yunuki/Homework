@@ -72,14 +72,9 @@ struct ProductItemView: View {
     }
     
     private var tags: some View {
-        HStack(spacing: 2) {
-            ForEach(Array(product.tags.enumerated()), id: \.element) { index, tag in
-                Text(tag)
-                    .typography(.caption1)
-                if index < product.tags.count-1 {
-                    Text("・")
-                }
-            }
+        FlowLayout(items: product.tags.flatMap { [$0, "・"] }.dropLast(), spacing: 2) { index, tag in
+            Text(tag)
+                .typography(.caption1)
         }
     }
     
@@ -88,10 +83,8 @@ struct ProductItemView: View {
         if product.benefits.isEmpty {
             EmptyView()
         } else {
-            HStack(spacing: 4) {
-                ForEach(product.benefits, id: \.self) { benefit in
-                    BenefitTagView(benefit: benefit)
-                }
+            FlowLayout(items: product.benefits, spacing: 4) { index, benefit in
+                BenefitTagView(benefit: benefit)
             }
         }
     }
