@@ -14,8 +14,12 @@ let package = Package(
         .package(url: "https://github.com/onevcat/Kingfisher.git", .upToNextMajor(from: "8.0.0"))
     ],
     targets: [
+        .target(name: "Logging"),
         .target(name: "Networking",
-                dependencies: [.product(name: "Alamofire", package: "Alamofire")]),
+                dependencies: [
+                    .product(name: "Alamofire", package: "Alamofire"),
+                    .target(name: "Logging")
+                ]),
         .target(name: "UIComponents",
                 dependencies: [.product(name: "Kingfisher", package: "Kingfisher")])
     ]
