@@ -16,4 +16,15 @@ public struct BaseProduct: Equatable {
     public let discountRate: Int
     public let imageURL: URL
     public let linkURL: URL
+    
+    public init(id: String, name: String, brand: String, price: Int, discountPrice: Int, discountRate: Int, imageURL: URL, linkURL: URL) {
+        self.id = id
+        self.name = name
+        self.brand = brand
+        self.price = price
+        self.discountPrice = discountPrice
+        self.discountRate = discountRate
+        self.imageURL = imageURL
+        self.linkURL = linkURL
+    }
 }
