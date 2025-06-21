@@ -7,11 +7,10 @@ let package = Package(
     name: "Core",
     platforms: [.iOS(.v14)],
     products: [
-        .library(name: "Core", targets: ["DI", "Logging", "Networking", "UIComponents"])
+        .library(name: "Core", targets: ["DI", "Logging", "Networking"])
     ],
     dependencies: [
         .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.10.0")),
-        .package(url: "https://github.com/onevcat/Kingfisher.git", .upToNextMajor(from: "8.0.0")),
         .package(url: "https://github.com/Swinject/Swinject.git", from: "2.8.0")
     ],
     targets: [
@@ -23,8 +22,6 @@ let package = Package(
                     .product(name: "Alamofire", package: "Alamofire"),
                     .product(name: "Swinject", package: "Swinject"),
                     .target(name: "Logging")
-                ]),
-        .target(name: "UIComponents",
-                dependencies: [.product(name: "Kingfisher", package: "Kingfisher")])
+                ])
     ]
 )

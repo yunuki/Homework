@@ -7,9 +7,14 @@ let package = Package(
     name: "Common",
     platforms: [.iOS(.v14)],
     products: [
-        .library(name: "Common", targets: ["Entity"])
+        .library(name: "Common", targets: ["Entity", "UI"])
+    ],
+    dependencies: [
+        .package(url: "https://github.com/onevcat/Kingfisher.git", .upToNextMajor(from: "8.0.0"))
     ],
     targets: [
-        .target(name: "Entity")
+        .target(name: "Entity"),
+        .target(name: "UI",
+                dependencies: [.product(name: "Kingfisher", package: "Kingfisher")])
     ]
 )
