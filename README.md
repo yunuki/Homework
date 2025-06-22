@@ -62,6 +62,7 @@ Modules
 
 - SwiftUI `List`와 `HStack`을 활용한 2열 카드 UI
 - 상품명, 가격, 할인 가격, 할인율, 브랜드명, 썸네일 이미지, 혜택 등 표시
+- 초기 로딩 화면 대응을 위한 Skeleton UI 적용
 - 상품 클릭 시 상세 페이지로 이동
 
 ### 상품 상세 화면 (ProductDetail)
