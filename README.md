@@ -73,9 +73,12 @@ Modules
 
 ## 🧠 접근 방식 및 고려사항
 
-- 상품 데이터는 `products.json` 파일로 구성되며, `Bundle.module`을 통해 로딩
-- `Core/Networking`은 실제 네트워크 요청 처리를 위한 infra 모듈로 정의
-- 사전 정의된 JS-native 인터페이스 없이, DOM 요소에 이벤트 리스너를 주입해 enum 기반 메시지로 native에 전달하는 통신 구조를 구현
+- DI는 Swinject를 기반으로 구성하였으며, DIContainer를 통해 App 진입 시점에 전역 등록 후 주입이 이뤄집니다.
+  - 각 Feature는 `Assembly`(예: ProductListDataAssembly, DomainAssembly, PresentationAssembly) 단위로 구성되어 계층적으로 의존 객체를 등록합니다.
+  - ViewController는 Feature에 정의된 `Factory`를 통해 생성되며, 필요한 UseCase 및 Coordinator는 DI를 통해 ViewModel에 주입됩니다.
+- `Core/Networking`은 실제 네트워크 요청 처리를 위한 infra 모듈로 정의했습니다.
+  - 상품 데이터는 `products.json` 파일로 구성되며, `Bundle.module`을 통해 로딩합니다.
+- 사전 정의된 JS-native 인터페이스 없이, DOM 요소에 이벤트 리스너를 주입해 enum 기반 메시지로 native에 전달하는 통신 구조를 구현했습니다.
 
 ## ⚙️ 빌드 및 실행 방법
 
@@ -86,7 +89,7 @@ Modules
 
 ## 🧪 테스트
 
-- `ProductListDataSourceMockImpl`를 통한 목 JSON (`products.json`) 기반 유닛 테스트 가능
+- `ProductListDataSourceMockImpl`를 통한 JSON (`products.json`) 기반 유닛 테스트 가능
 
 ## ⏱ 개발 소요 시간
 
