@@ -14,6 +14,7 @@ import Utils
 
 struct ProductItemView: View {
     let product: Product
+    let width: CGFloat
     @Environment(\.showSkeleton) var showSkeleton
     
     var body: some View {
@@ -29,11 +30,8 @@ struct ProductItemView: View {
     }
     
     private var thumbnail: some View {
-        GeometryReader { proxy in
-            ImageView(product.base.imageURL, size: CGSize(width: proxy.size.width, height: proxy.size.width))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-        }
-        .aspectRatio(1, contentMode: .fit)
+        ImageView(product.base.imageURL, size: CGSize(width: width, height: width))
+            .clipShape(RoundedRectangle(cornerRadius: 8))
     }
     
     private var title: some View {

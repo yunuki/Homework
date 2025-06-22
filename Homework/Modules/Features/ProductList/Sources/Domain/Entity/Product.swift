@@ -9,9 +9,7 @@ import Foundation
 
 import Entity
 
-public struct Product: Identifiable {
-    public var id: UUID { uuid }
-    public let uuid = UUID()
+public struct Product: Equatable, Hashable {
     public let base: BaseProduct
     public let tags: [String]
     public let benefits: [String]
