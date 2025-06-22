@@ -13,7 +13,11 @@ import DI
 final class ProductDetailViewController: UIViewController, ViewControllerType {
     
     private lazy var configuration = ProductDetailWebViewConfiguration.make(messageHandler: self)
-    private lazy var webView = WKWebView(frame: .zero, configuration: configuration)
+    private lazy var webView: WKWebView = {
+        let webView = WKWebView(frame: .zero, configuration: configuration)
+        webView.allowsBackForwardNavigationGestures = true
+        return webView
+    }()
     
     let viewModel: ProductDetailViewModel
     

@@ -9,22 +9,18 @@ import UIKit
 
 import ProductDetailPresentation
 import ProductListPresentation
+import UI
 
 import Swinject
 
 final class AppCoordinator  {
     let window: UIWindow
     let resolver: Resolver
-    let navigationController = UINavigationController()
+    let navigationController = NavigationController()
     
     init(window: UIWindow, resolver: Resolver) {
         self.window = window
         self.resolver = resolver
-        setup()
-    }
-    
-    private func setup() {
-        navigationController.setNavigationBarHidden(true, animated: false)
     }
     
     func start() {
