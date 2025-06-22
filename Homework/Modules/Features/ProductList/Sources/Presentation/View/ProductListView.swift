@@ -24,7 +24,7 @@ struct ProductListView: View {
                         .onTapGesture {
                             viewModel.sendAction(.onTapItem(product: product))
                         }
-                        .disabled(viewModel.state.initialized)
+                        .disabled(!viewModel.state.initialized)
                 }
             }
             .padding(.horizontal, 16)

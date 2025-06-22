@@ -8,6 +8,7 @@
 import UIKit
 
 import DI
+import ProductDetail
 import ProductList
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -55,6 +56,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     private func start(with window: UIWindow) {
         DIContainer.shared.registerAll([
+            ProductDetailAssembly(),
             ProductListAssembly()
         ])
         self.appCoordinator = AppCoordinator(window: window, resolver: DIContainer.shared.resolver)

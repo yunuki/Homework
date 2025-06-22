@@ -7,11 +7,12 @@
 
 import UIKit
 
+import ProductDetailPresentation
 import ProductListPresentation
 
 import Swinject
 
-final class AppCoordinator: ProductListCoordinating  {
+final class AppCoordinator  {
     let window: UIWindow
     let resolver: Resolver
     let navigationController = UINavigationController()
@@ -19,6 +20,11 @@ final class AppCoordinator: ProductListCoordinating  {
     init(window: UIWindow, resolver: Resolver) {
         self.window = window
         self.resolver = resolver
+        setup()
+    }
+    
+    private func setup() {
+        navigationController.setNavigationBarHidden(true, animated: false)
     }
     
     func start() {
@@ -28,8 +34,19 @@ final class AppCoordinator: ProductListCoordinating  {
         navigationController.setViewControllers([viewController], animated: false)
         window.makeKeyAndVisible()
     }
-    
+}
+
+extension AppCoordinator: ProductListCoordinating {
     func showProductDetail(linkURL: URL) {
-        
+        let factory = resolver.resolve(ProductDetailViewControllerFactory.self)!
+        let payload = ProductDetailViewControllerFactory.Payload(coordinator: self, linkURL: linkURL)
+        let viewController = factory.create(payload: payload)
+        navigationController.pushViewController(viewController, animated: true)
+    }
+}
+
+extension AppCoordinator: ProductDetailCoordinating {
+    func pop() {
+        navigationController.popViewController(animated: true)
     }
 }
