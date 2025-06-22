@@ -20,6 +20,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+				Modules/Common,
 				Modules/Core,
 				Modules/Features/ProductDetail,
 				Modules/Features/ProductList,

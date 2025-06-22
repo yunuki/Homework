@@ -7,15 +7,10 @@ let package = Package(
     name: "Shared",
     platforms: [.iOS(.v14)],
     products: [
-        .library(name: "Shared",targets: ["DesignSystem", "DI", "Utils"])
-    ],
-    dependencies: [
-        .package(url: "https://github.com/Swinject/Swinject.git", from: "2.8.0")
+        .library(name: "Shared",targets: ["DesignSystem", "Utils"])
     ],
     targets: [
         .target(name: "DesignSystem"),
-        .target(name: "DI",
-                dependencies: [.product(name: "Swinject", package: "Swinject")]),
         .target(name: "Utils")
     ]
 )

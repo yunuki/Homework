@@ -10,6 +10,7 @@ let package = Package(
         .library(name: "ProductList", targets: ["ProductList"])
     ],
     dependencies: [
+        .package(path: "../../Common"),
         .package(path: "../../Core"),
         .package(path: "../../Shared")
     ],
@@ -18,9 +19,11 @@ let package = Package(
                 dependencies: [
                     .target(name: "ProductListDomain")
                 ],
-                path: "Sources/Data"),
+                path: "Sources/Data",
+                resources: [.process("Resources")]),
         .target(name: "ProductListDomain",
                 dependencies: [
+                    .product(name: "Common", package: "Common"),
                     .product(name: "Core", package: "Core"),
                     .product(name: "Shared", package: "Shared")
                 ],
@@ -35,6 +38,8 @@ let package = Package(
                     .target(name: "ProductListData"),
                     .target(name: "ProductListDomain"),
                     .target(name: "ProductListPresentation")
-                ])
+                ]),
+        .testTarget(name: "ProductListTests",
+                    dependencies: ["ProductList"])
     ]
 )
