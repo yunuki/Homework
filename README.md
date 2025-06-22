@@ -44,6 +44,18 @@ Modules
     └── Utils
 ```
 
+## 🛠 사용 기술 / 패턴 / 라이브러리
+
+- SwiftUI
+- Swift Concurrency
+- WKWebView
+- Alamofire
+- Kingfisher
+- Swinject
+- XCTest
+- Clean Architecture
+- SPM Modular Architecture
+
 ## 🖼 주요 기능
 
 ### 상품 리스트 화면 (ProductList)
@@ -58,9 +70,11 @@ Modules
 - `WebViewConfiguration`, `WebViewMessageHandler`, `ProductDetailViewModel` 등으로 기능 분리
 - JavaScript → native 메시지 수신 구조 포함
 
-## 🧪 테스트
+## 🧠 접근 방식 및 고려사항
 
-- `ProductListDataSourceMockImpl`를 통한 목 JSON (`products.json`) 기반 유닛 테스트 가능
+- 상품 데이터는 `products.json` 파일로 구성되며, `Bundle.module`을 통해 로딩
+- `Core/Networking`은 실제 네트워크 요청 처리를 위한 infra 모듈로 정의
+- 사전 정의된 JS-native 인터페이스 없이, DOM 요소에 이벤트 리스너를 주입해 enum 기반 메시지로 native에 전달하는 통신 구조를 구현
 
 ## ⚙️ 빌드 및 실행 방법
 
@@ -69,25 +83,11 @@ Modules
 
 > ⚠️ 사전 조건: Xcode 15+, iOS 14+, Swift Package Manager
 
+## 🧪 테스트
+
+- `ProductListDataSourceMockImpl`를 통한 목 JSON (`products.json`) 기반 유닛 테스트 가능
+
 ## ⏱ 개발 소요 시간
 
 약 **6시간** 소요되었습니다.
-
-## 🛠 사용 기술 / 패턴 / 라이브러리
-
-- SwiftUI
-- Swift Concurrency
-- WKWebView
-- Alamofire
-- Kingfisher
-- Swinject
-- XCTest
-- Clean Architecture
-- SPM Modular Architecture
-
-## 🧠 접근 방식 및 고려사항
-
-- 상품 데이터는 `products.json` 파일로 구성되며, `Bundle.module`을 통해 로딩
-- `Core/Networking`은 실제 네트워크 요청 처리를 위한 infra 모듈로 정의
-- 사전 정의된 JS-native 인터페이스 없이, DOM 요소에 이벤트 리스너를 주입해 enum 기반 메시지로 native에 전달하는 통신 구조를 구현
 
